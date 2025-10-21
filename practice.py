@@ -486,26 +486,26 @@ Explain your reasoning with precision, making sure to define what a side effect 
 # invite2= make_inviter(message)
 # invite2("Cara")
 
-def say_hello(func):
-    def inner1(name):
-        result = func(name)
-        return (f'Hello and {result}')
+# def say_hello(func):
+#     def inner1(name):
+#         result = func(name)
+#         return (f'Hello and {result}')
 
-    return inner1
+#     return inner1
    
 
-def say_goodbye(func):
-    def inner2(name):
-        result = func(name)
-        return (f'Goodbye {result}')
-    return inner2
+# def say_goodbye(func):
+#     def inner2(name):
+#         result = func(name)
+#         return (f'Goodbye {result}')
+#     return inner2
 
-@say_hello
-@say_goodbye
-def my_name(name):
-    return name
+# @say_hello
+# @say_goodbye
+# def my_name(name):
+#     return name
 
-print(my_name('Cara'))
+# print(my_name('Cara'))
 
 
 
@@ -529,3 +529,39 @@ print(my_name('Cara'))
 #     print("Hello!")
 
 # say_hello()
+
+# def greeting():
+#     greeting = 'hello'
+    
+#     def say_hello():
+#         print(greeting)
+
+#     return say_hello
+
+# my_func = greeting()
+# my_func()
+
+# def my_func(a, b, *args, **kwargs):
+#         print(f"a: {a}")
+#         print(f"b: {b}")
+#         print(f"args: {args}")
+#         print(f"kwargs: {kwargs}")
+
+# my_func(1, 2, 3, 4, 5, x=6, y=7)
+
+def log_function_call(func):
+    def inner(name):
+        print(f'Calling function: {func.__name__}')
+        print(func(name))
+        print(f'Finished function: {func.__name__}')
+    return inner
+
+@log_function_call #say_hello = log_function_call(say_hello(name))
+def say_hello(name): 
+    print(f"Hello, {name}!")
+
+say_hello("Alice") #say_hello = inner --> 
+
+# Calling function: say_hello
+# Hello, Alice!
+# Finished function: say_hello
