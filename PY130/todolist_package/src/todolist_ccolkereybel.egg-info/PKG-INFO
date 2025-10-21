@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: todolist_ccolkereybel
+Version: 0.1.0
+Summary: A fantastic todo list application.
+Author-email: Cara Colker-Eybel <ccolkereybel@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/ccolkereybel/Todo-List
+Project-URL: Issues, https://github.com/ccolkereybel/Todo-List
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file

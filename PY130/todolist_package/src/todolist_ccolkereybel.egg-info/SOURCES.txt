@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+src/todolist_ccolkereybel/__init__.py
+src/todolist_ccolkereybel/todo.py
+src/todolist_ccolkereybel/todolist.py
+src/todolist_ccolkereybel.egg-info/PKG-INFO
+src/todolist_ccolkereybel.egg-info/SOURCES.txt
+src/todolist_ccolkereybel.egg-info/dependency_links.txt
+src/todolist_ccolkereybel.egg-info/top_level.txt
+tests/test_todolist.py

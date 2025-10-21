@@ -1,0 +1,9 @@
+{
+    "welcome": "Welcome to Calculator!",
+    "first number": "What's the first number?",
+    "second number": "What's the second number?",
+    "operation": "What operation would you like to perform? 1) Add 2) Subtract 3) Multiply 4) Divide",
+    "invalid number": "Hmm... that doesn't look like a valid number.",
+    "another": "Would you like to perform another calculation? (y/n)",
+    "invalid operation": "You must choose 1, 2, 3, or 4"
+}
