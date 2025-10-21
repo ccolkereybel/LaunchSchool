@@ -549,19 +549,68 @@ Explain your reasoning with precision, making sure to define what a side effect 
 
 # my_func(1, 2, 3, 4, 5, x=6, y=7)
 
-def log_function_call(func):
-    def inner(name):
-        print(f'Calling function: {func.__name__}')
-        print(func(name))
-        print(f'Finished function: {func.__name__}')
-    return inner
+# def log_function_call(func):
+#     def inner(*args, **kwargs):
+#         print(f'Calling function: {func.__name__}')
+#         result = func(*args, **kwargs)
+#         print(f'Finished function: {func.__name__}')
+#         return result
+#     return inner
 
-@log_function_call #say_hello = log_function_call(say_hello(name))
-def say_hello(name): 
-    print(f"Hello, {name}!")
+# @log_function_call 
+# def say_hello(name): 
+#     print(f"Hello, {name}!")
 
-say_hello("Alice") #say_hello = inner --> 
+# say_hello("Alice")
 
-# Calling function: say_hello
-# Hello, Alice!
-# Finished function: say_hello
+# @log_function_call 
+# def say_goodbye(name): 
+#     print(f"Goodbye, {name}!")
+
+# say_goodbye('Craig')
+
+# from functools import partial
+
+# def greet(name, greeting):
+#     return f"{greeting}, {name}!"
+
+# say_hello_to = partial(greet, greeting="Hello")
+# print(say_hello_to(name="Alice"))
+
+#will print Hello, Alice
+
+# def log_call(func):
+#     def inner(*args, **kwargs):
+#         print(f'Calling {func.__name__} with args={args} and kwargs={kwargs}')
+#         result = func(*args, **kwargs)
+#         print(f'{func.__name__} returned {result}')
+#     return inner
+
+# @log_call
+# def add(a, b):
+#     return a + b
+
+# @log_call
+# def greet(name, greeting="Hello"):
+#     return f"{greeting}, {name}!"
+
+# # Function calls
+# add(3, 5)
+# greet("World")
+
+# Calling 'add' with args=(3, 5) and kwargs={}
+# 'add' returned 8
+# Calling 'greet' with args=('World',) and kwargs={}
+# 'greet' returned 'Hello, World!'
+
+def configure_settings(path, /, verbose=False, *, user, permission_level=None, **options):
+        # function body
+        pass
+
+"""
+   a) configure_settings('/etc/config', True, user='admin', debug=True) --> valid
+   b) configure_settings(path='/etc/config', user='admin') --> invalid
+   c) configure_settings('/etc/config', user='guest', permission_level='read-only') --> valid
+   d) configure_settings('/etc/config', True, 'admin') --> invalid
+   e) configure_settings('/etc/config', permission_level='write', user='root') --> valid
+"""
