@@ -603,9 +603,9 @@ Explain your reasoning with precision, making sure to define what a side effect 
 # Calling 'greet' with args=('World',) and kwargs={}
 # 'greet' returned 'Hello, World!'
 
-def configure_settings(path, /, verbose=False, *, user, permission_level=None, **options):
-        # function body
-        pass
+# def configure_settings(path, /, verbose=False, *, user, permission_level=None, **options):
+#         # function body
+#         pass
 
 """
    a) configure_settings('/etc/config', True, user='admin', debug=True) --> valid
@@ -614,3 +614,383 @@ def configure_settings(path, /, verbose=False, *, user, permission_level=None, *
    d) configure_settings('/etc/config', True, 'admin') --> invalid
    e) configure_settings('/etc/config', permission_level='write', user='root') --> valid
 """
+
+"""
+Write a higher-order function named make_multiplier that takes a number n as an argument.
+This function should return another function that takes a number x and returns the product of n and x.
+Demonstrate how to use make_multiplier to create a function that doubles a number and another that
+triples a number.
+
+"""
+
+# def make_multiplier(n):
+#     def inner(x):
+#         return x * n 
+#     return inner
+
+# doubler = make_multiplier(5)
+# print(doubler(2))
+
+# tripler = make_multiplier(5)
+# print(tripler(3))
+
+# print(doubler.__closure__)
+# print(tripler.__closure__)
+
+# def write_greetings(filepath, names):
+#         with open(filepath, 'w') as f:
+#             for name in names:
+#                 f.write(f'Hello {name}')
+
+"""
+A closure is created by an inner function when
+it references a variable created in the outerscope.
+The inner function will remember this variable even
+after the outerfunction has finished running.
+"""
+
+# def outer():
+#     greeting = 'Hello'
+#     def inner():
+#         print(greeting)
+
+#     return inner
+
+# my_func = outer()
+# my_func()
+
+# def counter():
+#     count = 0
+#     def inner():
+#         nonlocal count
+#         count += 1
+#         return count
+#     return inner
+
+# one= counter()
+# two = counter()
+# print(one())
+# print(two())
+
+# print(one.__closure__)
+
+
+# def logger(status, time, message):
+#     return(f"{status.ljust(10)} | {time.ljust(7)} >>> {message}")
+
+# #Your solution here
+# def outer(status):
+#     def inner(time, message):
+#         return logger(status, time, message)
+#     return inner
+
+# warning = outer('WARNING!')
+# info = outer("Info")
+# test = outer('<test>')
+
+
+# #tests
+
+# print(warning('12:30', 'Unfortunate incident') ==
+#       "WARNING!   | 12:30   >>> Unfortunate incident")
+
+# print(info('17:00', "It's five oclock!!!") ==
+#       "Info       | 17:00   >>> It's five oclock!!!")
+
+# print(test('01:23', 'Does this make my nose look big?') ==
+#       "<test>     | 01:23   >>> Does this make my nose look big?")
+
+# def make_accumulator(inital_value):
+#     all_passed_values = inital_value
+#     def inner(other_value):
+#        nonlocal all_passed_values
+#        all_passed_values += other_value
+#        return all_passed_values
+
+#     return inner
+
+# acc1 = make_accumulator(10)
+# print(acc1(5))   # Expected: 15 (10 + 5)
+# print(acc1(10))  # Expected: 25 (15 + 10)
+# print(acc1(-2))  # Expected: 23 (25 - 2)
+
+# print("-" * 20)
+
+# acc2 = make_accumulator(100)
+# print(acc2(1))   # Expected: 101 (100 + 1)
+# print(acc2(-10)) # Expected: 91 (101 - 10)
+
+# def create_printers():
+#         printers = []
+#         for i in range(3):
+#             printers.append(lambda current = i: print(current))
+#         return printers
+
+# my_printers = create_printers()
+# my_printers[0]()
+# my_printers[1]()
+# my_printers[2]()
+
+"""
+What is a closure in Python?
+Explain the conditions necessary for a closure to be created
+and provide a code example of a simple closure that acts as a
+counter.
+
+# A closure is when an inner function closes over a variable from
+# its outerscope. This inner function is then returned by the outer
+# function, and the inner function remembers the value of the free variable
+# even after the outer function finishes excuting.
+
+# """
+# def counter():
+#     count = 0
+#     def increment():
+#         nonlocal count
+#         count += 1
+#         return count
+#     return increment
+
+# counter1 = counter()
+# print(counter1())
+# print(counter1())
+
+# def display_info(name, age, *args, city="Unknown", **kwargs):
+#     print(f"Name: {name}") #Name: Alice
+#     print(f"Age: {age}") #Age: 30
+#     print(f"City: {city}") #City: New York
+
+#     if args:
+#         print("Additional positional arguments:")
+#         for arg in args:
+#             print(f"- {arg}") #-Engineer
+#                             #-Designer
+
+#     if kwargs:
+#         print("Additional keyword arguments:")
+#         for key, value in kwargs.items():
+#             print(f"- {key}: {value}") # - country: USA
+#                                         # -status: Active
+#     print("-" * 20)
+
+
+# display_info("Alice", 30, "Engineer", "Designer",
+#              city="New York", country="USA", status="Active")
+
+# display_info("Bob", 25, "Student", hobby="Reading",
+#              project="Launch School")
+
+"""
+Coding Exercise​: Define a function named create_user_profile
+that meets the following criteria:
+1.  It must accept a user_id as a positional-only argument.
+2.  It must accept a username which can be passed as either a
+positional or keyword argument.
+3.  It must accept is_active as a keyword-only argument with a
+default value of True.
+4.  The function should return a dictionary containing these
+three key-value pairs.
+
+"""
+
+# def create_user_profile(user_id, /, username, *, is_active=True):
+#     return{
+#         'user_id': user_id,
+#         'username': username,
+#         'is_active': is_active
+#     }
+
+# from functools import partial
+
+# def power(base, exponent):
+#     return base ** exponent
+
+# # Create a new function that always squares a number
+# square = partial(power, exponent=2)
+
+# print(square(5))
+# print(square(10))
+
+# multipliers = []
+# for i in range(4):
+#     multipliers.append(lambda x, current_i = i: current_i * x)
+
+# print([m(2) for m in multipliers])
+
+"""
+Coding Exercise​​: Write a function named write_word_count
+that takes three arguments: input_filename, output_filename,
+and word.
+This function should:
+1.  Read the content from input_filename.
+2.  Count the number of occurrences of the specified word
+(case-insensitive).
+3.  Write a sentence to output_filename in the format:
+"The word '[word]' appears [count] times."
+Ensure that file resources are handled correctly, even if
+errors occur.
+"""
+
+# def write_word_count(input_filename, output_filename, word):
+#     try:
+#         with open(input_filename, 'r') as i_f:
+#             content = i_f.read()
+#             count = content.lower().count(word.lower())
+#         with open(output_filename, 'w') as o_f:
+#             o_f.write(f'The word {word} appears {count} times')
+#     except FileNotFoundError:
+#         print(f'Filename {input_filename} not found')
+
+"""
+Write a decorator factory named check_types that accepts a
+type (e.g., int, str). The factory should return a decorator that
+checks if all positional arguments passed to the decorated
+function are of the specified type.
+If not, it should raise a TypeError.
+"""
+
+# def check_types(type):
+#     def decorator(func):
+#         def wrapper(*args):
+#             if all(isinstance(arg, type) for arg in args):
+#                 return func(*args)
+#             else:
+#                 raise TypeError('Not the right type')
+#         return wrapper
+#     return decorator
+
+# @check_types(int)
+# def add_numbers(*args):
+#     return sum(args)
+
+# @check_types(str)
+# def join_strings(*args):
+#     return "".join(args)
+
+# print(add_numbers(1, 2, 3))       # Should work, output: 6
+# print(join_strings("a", "b", "c"))  # Should work, output: "abc"
+# # add_numbers(1, "2", 3)            # Should raise TypeError
+# # join_strings("a", 2, "c")         # Should raise TypeError
+
+# my_string = ['h','e','l','l','o']
+# my_string[2:4] = ['r', 'r']
+# print(my_string)
+
+"""
+Write a function that takes a string as input and counts the occurrences of each
+lowercase letter in the string. Return the counts in a dictionary where the
+letters are keys and their counts are values.
+
+"""
+
+# def letter_count(string):
+#     result = {}
+
+#     for letter in string:
+#         result[letter] = result.get(letter, 0) + 1
+
+#     print(result)
+
+# letter_count('launchschool') #=> { ’a’: 1, ‘c’: 2, ‘h’: 2, ‘l’: 2, ‘o’: 2, ‘u’: 1 }
+
+"""
+Write a function that takes a lowercase string as input and returns the length
+of the longest substring that consists entirely of vowels (a, e, i, o, u).
+"""
+
+# def solve(string):
+#     longest_substring = ""
+#     VOWELS = 'aeiou'
+#     substring = ""
+
+#     for letter in string:
+#         if letter in VOWELS:
+#             substring += letter
+#             if len(substring) > len(longest_substring):
+#                 longest_substring = substring
+#         else:
+#             substring = ""
+
+#     print(len(longest_substring))
+
+# solve("roadwarriors") # should return 2
+# solve("suoidea") # should return 3
+
+"""
+Write a function that takes in a string of one or more words and returns the same string,
+but with all words of five or more letters reversed. Strings passed in will consist of only
+letters and spaces. Spaces will be included only when more than one word is present.
+"""
+
+# def spin_words(string):
+#     list_of_words = string.split()
+#     result = []
+
+#     for word in list_of_words:
+#         if len(word) >= 5:
+#             result.append(word[::-1])
+#         else:
+#             result.append(word)
+
+#     return " ".join(result)
+
+# print(spin_words("Hey fellow warriors")) # should return "Hey wollef sroirraw"
+# print(spin_words("This is a test")) # should return "This is a test"
+# print(spin_words("This is another test")) # should return "This is rehtona test"
+
+"""
+Write a function that splits the string into pairs of two characters.
+If the string contains an odd number of characters, replace the missing second
+character of the final pair with an underscore ('_').
+"""
+
+# def solution(string):
+#     result = []
+
+#     if len(string) % 2 == 0:
+#         for i in range(0,len(string), 2):
+#             result.append(string[i : i+2])
+#     else:
+#         string += '_'
+#         for i in range(0,len(string), 2):
+#             result.append(string[i : i+2])
+
+#     return result
+
+
+# print(solution('abc') == ['ab', 'c_'])
+# print(solution('abcdef') == ['ab', 'cd', 'ef'])
+# print(solution("abcdef")) #== ["ab", "cd", "ef"])
+# print(solution("abcdefg") == ["ab", "cd", "ef", "g_"])
+# print(solution("") == [])
+
+"""
+Find the highest scoring word in a string.
+Each letter scores points based on its position in the alphabet: a = 1, b = 2, c = 3, ... z = 26.
+Return the highest scoring word. If two words score the same, return the word that appears
+earliest in the string.
+"""
+
+def high(string):
+    alphabet = '0abcdefghijklmnopqrstuvwxyz'
+    high_score = 0
+    high_score_word = ""
+    list_of_words = string.split()
+
+    for word in list_of_words:
+        score = 0
+        for letter in word:
+            score += alphabet.index(letter)
+        if score > high_score:
+            high_score = score
+            high_score_word = word
+
+    return high_score_word
+
+print(high('man i need a taxi up to ubud') == 'taxi')
+print(high('what time are we climbing up the volcano') == 'volcano')
+print(high('take me to semynak') == 'semynak')
+print(high('aaa b') == 'aaa')
+
+
+
