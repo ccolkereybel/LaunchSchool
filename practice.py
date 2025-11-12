@@ -603,9 +603,9 @@ Explain your reasoning with precision, making sure to define what a side effect 
 # Calling 'greet' with args=('World',) and kwargs={}
 # 'greet' returned 'Hello, World!'
 
-def configure_settings(path, /, verbose=False, *, user, permission_level=None, **options):
-        # function body
-        pass
+# def configure_settings(path, /, verbose=False, *, user, permission_level=None, **options):
+#         # function body
+#         pass
 
 """
    a) configure_settings('/etc/config', True, user='admin', debug=True) --> valid
@@ -614,3 +614,9 @@ def configure_settings(path, /, verbose=False, *, user, permission_level=None, *
    d) configure_settings('/etc/config', True, 'admin') --> invalid
    e) configure_settings('/etc/config', permission_level='write', user='root') --> valid
 """
+
+#http://amazon.com:3000/products/B60HON32?qid=142952676&sr=93
+
+value = 10
+
+print(not value == 10)
