@@ -42,7 +42,7 @@ while True:
                      f'<p style="color: red;">The current number is: {number}</p>'
                      f"<a href='?number={number + 1}'>Add one</a>"
                      "&nbsp;&nbsp;"
-                     f"<a href='?number={number - 1}>Subtract one</a>"
+                     f"<a href='?number={number - 1}'>Subtract one</a>"
                      "</body></html>")
 
     response = ("HTTP/1.1 200 OK\r\n"
