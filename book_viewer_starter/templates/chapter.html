@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2 class="content-subhead">{{ chapter_title }}</h2>
+
+  {% for paragraph in chapter | in_paragraphs %}
+    <p id="paragraph {{ loop.index0 }}">{{ paragraph | safe }}</p>
+
+  {% endfor %}
+
+{% endblock %}
